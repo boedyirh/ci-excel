@@ -56,34 +56,13 @@ text-align:left;
 		<tr>
 			<td align="center"><?php echo $no; $no++ ;?></td>
 			<td  ><?php echo $b->NamaFile ;?></td>
-		  <td align="center"><?php echo $b->Jumlah;?></td>
+		  <td align="center"><?php echo number_format($b->Jumlah);?></td>
 	  </tr>
     
     <?php }  ?>
 	 
 	</tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <?php echo form_close();?>
