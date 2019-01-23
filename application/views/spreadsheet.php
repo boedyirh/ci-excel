@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Import/Export CodeIgniter dan Spreadsheet</title>
+<title>Import/Export using phpspreadsheet in codeigniter</title>
 </head>
 <body>
 <style>
@@ -24,7 +24,7 @@ text-align:left;
 }
  
 </style>
-<h3><u>Import/Export Data</u></h3>
+<h3><u>Import Data dengan Codeigniter</u></h3>
  
 <?php echo form_open_multipart('spreadsheet/import',array('name' => 'spreadsheet')); ?>
 <table align="center" cellpadding = "5">
@@ -33,9 +33,59 @@ text-align:left;
 <td><input type="file" size="40px" name="upload_file" /></td>
 <td class="error"><?php echo form_error('name'); ?></td>
 <td colspan="5" align="center">
-<input type="submit" value="Import Data"/></td>
+<input type="submit" value="Import Users"/></td>
 </tr>
 </table>
+
+
+ <table align="center" cellpadding = "5">
+	<thead>
+			<tr  bgcolor=#cce6ff>
+			<th  width="5%">No</th>
+			<th   width="30%">Dokumen Terupload</th>
+			<th   width="30%">Jumlah Row</th>
+		 
+		</tr>
+	</thead>
+	
+	<tbody>
+    <?php 
+    $no=1;
+    	$data	= $this->db->query("SELECT * FROM history_upload order by UploadID desc limit 25")->result();
+     	foreach ($data as $b) {?>
+		<tr>
+			<td align="center"><?php echo $no; $no++ ;?></td>
+			<td  ><?php echo $b->NamaFile ;?></td>
+		  <td align="center"><?php echo $b->Jumlah;?></td>
+	  </tr>
+    
+    <?php }  ?>
+	 
+	</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php echo form_close();?>
 </body>
 </html>
