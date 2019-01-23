@@ -38,20 +38,24 @@ $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 }
 $spreadsheet = $reader->load($_FILES['upload_file']['tmp_name']);
 $sheetData = $spreadsheet->getActiveSheet()->toArray();
-
-error_reporting(0);        
-$namafile= $_FILES['upload_file']['name']; 			
-$data_excel = array();
-$count=0;
+//echo "<pre>";
+//print_r($sheetData);
+		error_reporting(0);        
+// check connection details
+   $namafile= $_FILES['upload_file']['name']; 			
       
-foreach ( $sheetData  as $r ) {
-	//Isi Data dari masing masing field  
-	 if($count == 0)  //skip first row
+      $data_excel = array();
+     	$count=0;
+      
+				  	foreach ( $sheetData  as $r ) {
+						//Isi Data dari masing masing field  
+				       if($count == 0)  //skip first row
         {
             $count++;
             continue;
         }
-   	       
+            // echo 'ssss<br>';
+		       
             $data_excel[$i]['Field001'] = $r[1];
             $data_excel[$i]['Field002'] = $r[2];
             $data_excel[$i]['Field003'] = $r[3];
@@ -154,16 +158,37 @@ foreach ( $sheetData  as $r ) {
             $data_excel[$i]['Field100'] = $r[100];
             $data_excel[$i]['Field101'] = $r[101];
             $data_excel[$i]['Field102'] = $r[102];
-   
-            $count++;
-	//Insert ke Database
-	   $this->db->insert_batch('db_gen1', $data_excel); 
-        }
-	//Update information uploaded file
-          $count=$count-1; // row count each upload
-          $this->db->query("INSERT INTO history_upload VALUES (NULL, '$namafile','$count')");
-          echo 'Telah berhasil diupload:'.$namafile.'dengan jumlah '.$count.' record';    
+     
+          
+             $count++;
+						//Insert ke Database
+					 	$this->db->insert_batch('db_gen1', $data_excel); 
+       
+					}
+          $count=$count-1;
+              	$this->db->query("INSERT INTO history_upload VALUES (NULL, '$namafile','$count')");
+  	
+    echo 'Telah berhasil diupload: Nama file = '.$namafile.' dengan jumlah '.number_format($count).' record';    
 
 }
+
+  
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
