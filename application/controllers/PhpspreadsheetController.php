@@ -1,7 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+require_once APPPATH.'third_party/Spout/Autoloader/autoload.php';
+use Box\Spout\Reader\ReaderFactory;
+use Box\Spout\Common\Type;
+
 class PhpspreadsheetController extends CI_Controller {
 public function __construct()
 {
@@ -13,6 +16,7 @@ $this->load->view('spreadsheet');
 
 
 }
+//----------------------------------------------------------------------------------------------------------
 public function export()
 {
 $spreadsheet = new Spreadsheet();
@@ -26,36 +30,34 @@ header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"');
 header('Cache-Control: max-age=0');
 $writer->save('php://output'); // download file
 }
+
+//----------------------------------------------------------------------------------------------------------
 public function import(){
-$file_mimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-if(isset($_FILES['upload_file']['name']) && in_array($_FILES['upload_file']['type'], $file_mimes)) {
-$arr_file = explode('.', $_FILES['upload_file']['name']);
-$extension = end($arr_file);
-if('csv' == $extension){
-$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
-} else {
-$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-}
-$spreadsheet = $reader->load($_FILES['upload_file']['tmp_name']);
-$sheetData = $spreadsheet->getActiveSheet()->toArray();
-//echo "<pre>";
-//print_r($sheetData);
-		error_reporting(0);        
-// check connection details
-   $namafile= $_FILES['upload_file']['name']; 			
-      
-      $data_excel = array();
-     	$count=0;
-      
-				  	foreach ( $sheetData  as $r ) {
-						//Isi Data dari masing masing field  
-				       if($count == 0)  //skip first row
+
+$namafile= $_FILES['upload_file']['tmp_name'];
+$realnamafile= $_FILES['upload_file']['name'];
+$reader = ReaderFactory::create(Type::XLSX); //set Type file xlsx
+$reader->open($_FILES['upload_file']['tmp_name']); //open file xlsx
+ $count  = 0;
+foreach ($reader->getSheetIterator() as $sheet)
+{
+   $numRow  = 1;
+   //siapkan variabel array kosong untuk menampung variabel array data
+   $save   = array();
+   
+          $i  = 0;
+       
+         //looping pembacaan row dalam sheet
+                    foreach ($sheet->getRowIterator() as $r)
+                    {
+                    
+                     if($count == 0)  //skip first row
         {
             $count++;
             continue;
         }
-            // echo 'ssss<br>';
-		       
+        
+            $data_excel = array(); 
             $data_excel[$i]['Field001'] = $r[1];
             $data_excel[$i]['Field002'] = $r[2];
             $data_excel[$i]['Field003'] = $r[3];
@@ -157,38 +159,28 @@ $sheetData = $spreadsheet->getActiveSheet()->toArray();
             $data_excel[$i]['Field099'] = $r[99];
             $data_excel[$i]['Field100'] = $r[100];
             $data_excel[$i]['Field101'] = $r[101];
-            $data_excel[$i]['Field102'] = $r[102];
+                 
+        
      
-          
-             $count++;
-						//Insert ke Database
-					 	$this->db->insert_batch('db_gen1', $data_excel); 
-       
-					}
+            //insert ke database
+           	$this->db->insert_batch('db_gen31a', $data_excel);
+
+             $i++;
+              $count++;
+
+
+                   }
+
+
+} 
+ 
+
+
+				
           $count=$count-1;
-              	$this->db->query("INSERT INTO history_upload VALUES (NULL, '$namafile','$count')");
+              	$this->db->query("INSERT INTO history_upload VALUES (NULL, '$realnamafile','$count','')");
   	
-    echo 'Telah berhasil diupload: Nama file = '.$namafile.' dengan jumlah '.number_format($count).' record';    
-
-}
-
-  
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    echo 'Telah berhasil diupload, Nama File :'.$realnamafile.' dengan jumlah record '.$count.' record';    
+     }
+ 
 }
