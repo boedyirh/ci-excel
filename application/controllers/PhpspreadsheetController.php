@@ -33,7 +33,7 @@ $writer->save('php://output'); // download file
 
 //----------------------------------------------------------------------------------------------------------
 public function import(){
-
+error_reporting(0);  
 $namafile= $_FILES['upload_file']['tmp_name'];
 $realnamafile= $_FILES['upload_file']['name'];
 $reader = ReaderFactory::create(Type::XLSX); //set Type file xlsx
