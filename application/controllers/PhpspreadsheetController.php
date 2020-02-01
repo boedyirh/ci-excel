@@ -163,7 +163,7 @@ foreach ($reader->getSheetIterator() as $sheet)
         
      
             //insert ke database
-           	$this->db->insert_batch('db_gen31a', $data_excel);
+           	$this->db->insert_batch('db_gen31', $data_excel);
 
              $i++;
               $count++;
