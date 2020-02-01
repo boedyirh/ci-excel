@@ -1,18 +1,36 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.6.35 - MySQL Community Server (GPL)
--- Server OS:                    Win32
--- HeidiSQL Version:             9.5.0.5196
--- --------------------------------------------------------
+-- MySQL dump 10.13  Distrib 5.6.45, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: db_bdt
+-- ------------------------------------------------------
+-- Server version	5.6.45
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table db_bdt.db_gen1
-CREATE TABLE IF NOT EXISTS `db_gen1` (
+--
+-- Current Database: `db_bdt`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `db_bdt` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `db_bdt`;
+
+--
+-- Table structure for table `db_gen1`
+--
+
+DROP TABLE IF EXISTS `db_gen1`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `db_gen1` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
   `Field001` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Field002` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -128,10 +146,25 @@ CREATE TABLE IF NOT EXISTS `db_gen1` (
   `Field112` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=30250 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Data exporting was unselected.
--- Dumping structure for table db_bdt.db_gen2
-CREATE TABLE IF NOT EXISTS `db_gen2` (
+--
+-- Dumping data for table `db_gen1`
+--
+
+LOCK TABLES `db_gen1` WRITE;
+/*!40000 ALTER TABLE `db_gen1` DISABLE KEYS */;
+/*!40000 ALTER TABLE `db_gen1` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `db_gen2`
+--
+
+DROP TABLE IF EXISTS `db_gen2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `db_gen2` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
   `Field001` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Field002` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -247,10 +280,25 @@ CREATE TABLE IF NOT EXISTS `db_gen2` (
   `Field112` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Data exporting was unselected.
--- Dumping structure for table db_bdt.db_gen3
-CREATE TABLE IF NOT EXISTS `db_gen3` (
+--
+-- Dumping data for table `db_gen2`
+--
+
+LOCK TABLES `db_gen2` WRITE;
+/*!40000 ALTER TABLE `db_gen2` DISABLE KEYS */;
+/*!40000 ALTER TABLE `db_gen2` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `db_gen3`
+--
+
+DROP TABLE IF EXISTS `db_gen3`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `db_gen3` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
   `Field001` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Field002` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -366,17 +414,49 @@ CREATE TABLE IF NOT EXISTS `db_gen3` (
   `Field112` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Data exporting was unselected.
--- Dumping structure for table db_bdt.history_upload
-CREATE TABLE IF NOT EXISTS `history_upload` (
+--
+-- Dumping data for table `db_gen3`
+--
+
+LOCK TABLES `db_gen3` WRITE;
+/*!40000 ALTER TABLE `db_gen3` DISABLE KEYS */;
+/*!40000 ALTER TABLE `db_gen3` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `history_upload`
+--
+
+DROP TABLE IF EXISTS `history_upload`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `history_upload` (
   `UploadID` int(11) NOT NULL AUTO_INCREMENT,
   `NamaFile` varchar(150) COLLATE utf8_unicode_ci DEFAULT '0',
   `Jumlah` int(11) NOT NULL DEFAULT '0',
+  `catatan` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`UploadID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- Data exporting was unselected.
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+--
+-- Dumping data for table `history_upload`
+--
+
+LOCK TABLES `history_upload` WRITE;
+/*!40000 ALTER TABLE `history_upload` DISABLE KEYS */;
+/*!40000 ALTER TABLE `history_upload` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-02-01 16:25:07
