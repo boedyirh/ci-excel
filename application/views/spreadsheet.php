@@ -59,7 +59,7 @@ text-align:left;
 			<td align="center"><?php echo $no; $no++ ;?></td>
 			<td  ><?php echo $b->NamaFile ;?></td>
 		  <td align="center"><?php echo number_format($b->Jumlah);?></td>
-      <td  ><?php echo $b->Catatan ;?></td>
+      <td  ><?php echo $b->catatan ;?></td>
 	  </tr>
     
     <?php
